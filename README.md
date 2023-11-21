@@ -16,22 +16,21 @@ ROUND           =    ((λ | DISPLAY | CHECK | GRIND | CLASSPLAYER | INVENTORY), 
 DISPLAY         =    ("display", "(", BOOLEXPRESSION, ")");
 CHECK           =    ("routeA", "(", BOOLEXPRESSION ,")", ROUND, (("routeB", ROUND) | λ ));
 GRIND           =    ("grind", INVENTORY, ";", BOOLEXPRESSION ,";", INVENTORY, PLAY);
-CLASSPLAYER     =    ("player", PLAYER, "class", ("str" | "int"), (λ | {"get" , BOOLEXPRESSION}));
+CLASSPLAYER     =    ("player", PLAYER, "class", "int", (λ | {"get" , BOOLEXPRESSION}));
 BOOLEXPRESSION  =    (BOOLTERM | {BOOLTERM, "or"});
 BOOLTERM        =    (RELEXPRESSION | (RELEXPRESSION, "combo"));
 RELEXPRESSION   =    (EXPRESSION, {("outclassed" | "outclass" | "tied"), EXPRESSION });
 EXPRESSION      =    (TERM, {("buff" | "nerf" | "team"), TERM});
 TERM            =    (FACTOR, {("amplify" | "split"), FACTOR });
-FACTOR          =    (INT | STRING | PLAYER | {("buff" | "nerf" | "demolish"), FACTOR} | ("(", BOOLEXPRESSION, ")") | PRESS);
+FACTOR          =    (INT | PLAYER | {("buff" | "nerf" | "demolish"), FACTOR} | ("(", BOOLEXPRESSION, ")") | PRESS);
 PRESS           =    ("press", "(", ")");
 INT             =    (DIGIT, { DIGIT });
-STRING          =    (""", (LETTER | DIGIT), """);
 LETTER          =    ( a | ... | z | A | ... | Z ) ;
 DIGIT           =    (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9);
 PLAYER          =    (LETTER, { LETTER | DIGIT | "_" });
 ```
 
-The syntax is designed to be intuitive for gamers, allowing them to express code using familiar gaming terms. The grammar includes elements like `GAME`, `PLAY`, `INVENTORY`, `ROUND`, `DISPLAY`, `CHECK`, `GRIND`, `CLASSPLAYER`, `BOOLEXPRESSION`, `BOOLTERM`, `RELEXPRESSION`, `EXPRESSION`, `TERM`, `FACTOR`, `PRESS`, `INT`, `STRING`, `LETTER`, `DIGIT`, and `PLAYER`, each with its own unique functionality.
+The syntax is designed to be intuitive for gamers, allowing them to express code using familiar gaming terms. The grammar includes elements like `GAME`, `PLAY`, `INVENTORY`, `ROUND`, `DISPLAY`, `CHECK`, `GRIND`, `CLASSPLAYER`, `BOOLEXPRESSION`, `BOOLTERM`, `RELEXPRESSION`, `EXPRESSION`, `TERM`, `FACTOR`, `PRESS`, `INT`, `LETTER`, `DIGIT`, and `PLAYER`, each with its own unique functionality.
 
 ---
 ## Examples
@@ -41,8 +40,6 @@ The syntax is designed to be intuitive for gamers, allowing them to express code
 ```plaintext
 player x class int:         
 x get 1:                   # x = 1
-player y class str:
-y get "Hello World":       # y = 1
 ```
 
 #### Making operations

@@ -1,0 +1,7 @@
+player x class int:
+x get 3:                            
+player y class int:
+y get 2:                            
+
+player z class int get x buff y:
+diplay(z):
