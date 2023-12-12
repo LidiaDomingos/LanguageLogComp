@@ -112,3 +112,14 @@ To test (id : [1, 2, 3, 4]):
 ```
 ./playcode < ../codeExamples/example{id}.pc
 ```
+
+## Conceitos Atingidos!
+
+- :white_check_mark: Estruturar a linguagem segundo o padrão EBNF.
+- :white_check_mark: Utilizar as ferramentas Flex e Bison para realizar as etapas de Análise Léxica e Sintática. A saída
+deve ser um arquivo C ou CPP compilado pelo Flex/Bison.
+- :white_large_square: Utilizar alguma VM (LLVM, JVM, .net, etc) para interpretar um programa da sua linguagem.
+- :white_check_mark: Criar um exemplo de testes que demonstre as características da sua Linguagem.
+- :white_check_mark: Montar uma apresentação com slides apresentando sua linguagem (Motivação, Características, Curiosidades e Exemplos). Colocar no Git.
+
+
