@@ -1,37 +1,27 @@
 player mario class int get 2
 player luigi class int get 3
-
 routeA (luigi outclass mario){
     mario get 5
 }
-
 display("mario got")
 display(mario)
-
 routeA (luigi outclass mario){
     mario get 5
 } routeB {
     display("luigi was outclassed by mario")
 }
-
 display("one more round!")
-
 routeA (luigi outclassed mario){
     luigi get 5
 } 
-
 display("luigi got")
 display(luigi)
-
 routeA (luigi tied mario){
     display("Oh no! The players are tied!")
 }
-
 luigi get 10
-
 display("luigi got")
 display(luigi)
-
 routeA (luigi outclass mario){
     display("mario was outclassed by luigi")
-} 
+}

@@ -68,21 +68,22 @@ extern int yydebug;
     tied = 269,                    /* tied  */
     outclass = 270,                /* outclass  */
     outclassed = 271,              /* outclassed  */
-    grind = 272,                   /* grind  */
-    routeA = 273,                  /* routeA  */
-    routeB = 274,                  /* routeB  */
-    press = 275,                   /* press  */
-    display = 276,                 /* display  */
-    type = 277,                    /* type  */
-    semicolon = 278,               /* semicolon  */
-    start_parentheses = 279,       /* start_parentheses  */
-    end_parentheses = 280,         /* end_parentheses  */
-    start_bracket = 281,           /* start_bracket  */
-    end_bracket = 282,             /* end_bracket  */
-    DIGIT = 283,                   /* DIGIT  */
-    IDENTIFIER = 284,              /* IDENTIFIER  */
-    STRING = 285,                  /* STRING  */
-    enter = 286                    /* enter  */
+    WHILE_TOKEN = 272,             /* WHILE_TOKEN  */
+    grinding = 273,                /* grinding  */
+    routeA = 274,                  /* routeA  */
+    routeB = 275,                  /* routeB  */
+    press = 276,                   /* press  */
+    display = 277,                 /* display  */
+    type = 278,                    /* type  */
+    semicolon = 279,               /* semicolon  */
+    start_parentheses = 280,       /* start_parentheses  */
+    end_parentheses = 281,         /* end_parentheses  */
+    start_bracket = 282,           /* start_bracket  */
+    end_bracket = 283,             /* end_bracket  */
+    DIGIT = 284,                   /* DIGIT  */
+    IDENTIFIER = 285,              /* IDENTIFIER  */
+    STRING = 286,                  /* STRING  */
+    enter = 287                    /* enter  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -96,7 +97,7 @@ union YYSTYPE
     char* str_value;
     int int_value;
 
-#line 100 "playcode.tab.h"
+#line 101 "playcode.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

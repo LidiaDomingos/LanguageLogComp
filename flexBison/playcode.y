@@ -28,7 +28,8 @@ void yyerror(const char *s);
 %token outclass
 %token outclassed
 
-%token grind
+%token WHILE_TOKEN
+%token grinding
 %token routeA
 %token routeB
 
@@ -53,13 +54,13 @@ void yyerror(const char *s);
 
 %%
 
-GAME: ROUND enter | GAME ROUND enter;
+GAME: ROUND enter| GAME ROUND enter ;
 
-PLAY: start_bracket enter AUXROUND end_bracket | start_bracket enter end_bracket ;
+PLAY: start_bracket enter AUXROUND end_bracket;
 
 ROUND:  DISPLAY | CHECK | GRIND | CLASSPLAYER | INVENTORY;
 
-AUXROUND: ROUND | AUXROUND ROUND;
+AUXROUND: ROUND enter | AUXROUND ROUND enter;
 
 INVENTORY: PLAYER get BOOLEXPRESSION;
 
@@ -69,7 +70,7 @@ CHECKAUX: routeB PLAY | /* empty */;
 
 CHECK: routeA start_parentheses BOOLEXPRESSION end_parentheses PLAY CHECKAUX;
 
-GRIND: grind INVENTORY semicolon BOOLEXPRESSION semicolon INVENTORY PLAY;
+GRIND: WHILE_TOKEN grinding start_parentheses INVENTORY semicolon BOOLEXPRESSION semicolon INVENTORY end_parentheses PLAY;
 
 CLASSPLAYERAUX: get BOOLEXPRESSION | /* empty */;
 

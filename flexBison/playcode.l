@@ -33,7 +33,8 @@ char* yyval;
 "outclass"                  { yyval = strdup(yytext); return outclass; }
 "outclassed"                { yyval = strdup(yytext); return outclassed; }
 
-"grind"                     { yyval = strdup(yytext); return grind; }
+"while"                     { yyval = strdup(yytext); return WHILE_TOKEN; }
+"grinding"                  { yyval = strdup(yytext); return grinding; }
 "routeA"                    { yyval = strdup(yytext); return routeA; }
 "routeB"                    { yyval = strdup(yytext); return routeB; }
 

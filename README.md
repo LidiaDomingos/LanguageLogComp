@@ -3,6 +3,8 @@
 ##### *A perfect programming language for those who love gaming and feel more comfortable understanding sentences with gamer slang, having a little more fun!*
 ---
 
+[Presentation (In Portuguese) PDF](apresentacao.pdf)
+
 The **PlayCode** language is tailored for individuals passionate about gaming. It provides a coding environment where sentences are expressed using gamer jargon, creating a more intuitive experience for those familiar with gaming terminology.
 
 ---
@@ -43,7 +45,7 @@ The syntax is designed to be intuitive for gamers, allowing them to express code
 player x class int         
 x get 1                   // x = 1
 player y class string         
-x get "good game!"        // x = 1
+y get "good game!"        // y = "good game!"
 ```
 
 #### Making operations
@@ -95,4 +97,18 @@ while grinding(mario get 1; mario outclassed 11; mario get mario buff 1){
 } 
 ```
 
+---
+## Flex Bison Implementation
 
+To see the syntax lexer and parser confirmed by the flex-bison, you can follow these steps (remember, you must have flex and bison installed, system Linux and be in the folder called flexBison):
+
+```
+flex -d playcode.l
+bison -d playcode.y
+gcc -Wall -o playcode lex.yy.c playcode.tab.c
+```
+
+To test (id : [1, 2, 3, 4]):
+```
+./playcode < ../codeExamples/example{id}.pc
+```

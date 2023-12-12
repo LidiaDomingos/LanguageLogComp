@@ -1,5 +1,4 @@
 player mario class int get 2
-
 while grinding(mario get 1; mario outclassed 11; mario get mario buff 1){
     display(mario)
-} 
+}
