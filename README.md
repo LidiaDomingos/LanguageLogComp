@@ -9,28 +9,30 @@ The **PlayCode** language is tailored for individuals passionate about gaming. I
 ## EBNF 
 
 ```plaintext
-GAME            =    (λ | ROUND);
-PLAY            =    ("{", ROUND, "}");
+GAME            =    {λ | ROUND};
+PLAY            =    {"{", "\n", ROUND, "}"};
 INVENTORY       =    (PLAYER, "get", BOOLEXPRESSION);
-ROUND           =    ((λ | DISPLAY | CHECK | GRIND | CLASSPLAYER | INVENTORY), ":");
+ROUND           =    (λ | DISPLAY | CHECK | GRIND | CLASSPLAYER | INVENTORY);
 DISPLAY         =    ("display", "(", BOOLEXPRESSION, ")");
-CHECK           =    ("routeA", "(", BOOLEXPRESSION ,")", ROUND, (("routeB", ROUND) | λ ));
-GRIND           =    ("grind", INVENTORY, ";", BOOLEXPRESSION ,";", INVENTORY, PLAY);
+CHECK           =    ("routeA", "(", BOOLEXPRESSION ,")", PLAY, (("routeB", PLAY) | λ ));
+GRIND           =    ("grind", INVENTORY, ";", BOOLEXPRESSION, ";", INVENTORY, PLAY);
 CLASSPLAYER     =    ("player", PLAYER, "class", "int", (λ | {"get" , BOOLEXPRESSION}));
-BOOLEXPRESSION  =    (BOOLTERM | {BOOLTERM, "or"});
-BOOLTERM        =    (RELEXPRESSION | (RELEXPRESSION, "combo"));
+BOOLEXPRESSION  =    (BOOLTERM | { "or", BOOLTERM});
+BOOLTERM        =    (RELEXPRESSION | ("combo", RELEXPRESSION));
 RELEXPRESSION   =    (EXPRESSION, {("outclassed" | "outclass" | "tied"), EXPRESSION });
 EXPRESSION      =    (TERM, {("buff" | "nerf" | "team"), TERM});
 TERM            =    (FACTOR, {("amplify" | "split"), FACTOR });
-FACTOR          =    (INT | PLAYER | {("buff" | "nerf" | "demolish"), FACTOR} | ("(", BOOLEXPRESSION, ")") | PRESS);
+FACTOR          =    (INT | STRING | PLAYER | {("buff" | "nerf" | "demolish"), FACTOR} | ("(", BOOLEXPRESSION, ")") | PRESS);
 PRESS           =    ("press", "(", ")");
 INT             =    (DIGIT, { DIGIT });
+STRING          =    ('"', {λ | LETTER | DIGIT | SPECIAL}, '"')
+SPECIAL         =    ( @ | # | $ | % | & | _ | : | , | . | ? | ! | ? | - | ~ ) ;
 LETTER          =    ( a | ... | z | A | ... | Z ) ;
 DIGIT           =    (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9);
 PLAYER          =    (LETTER, { LETTER | DIGIT | "_" });
 ```
 
-The syntax is designed to be intuitive for gamers, allowing them to express code using familiar gaming terms. The grammar includes elements like `GAME`, `PLAY`, `INVENTORY`, `ROUND`, `DISPLAY`, `CHECK`, `GRIND`, `CLASSPLAYER`, `BOOLEXPRESSION`, `BOOLTERM`, `RELEXPRESSION`, `EXPRESSION`, `TERM`, `FACTOR`, `PRESS`, `INT`, `LETTER`, `DIGIT`, and `PLAYER`, each with its own unique functionality.
+The syntax is designed to be intuitive for gamers, allowing them to express code using familiar gaming terms. The grammar includes elements like `GAME`, `PLAY`, `INVENTORY`, `ROUND`, `DISPLAY`, `CHECK`, `GRIND`, `CLASSPLAYER` and `PLAYER`, each with its own unique functionality.
 
 ---
 ## Examples
@@ -38,20 +40,22 @@ The syntax is designed to be intuitive for gamers, allowing them to express code
 #### Declaring variables
 
 ```plaintext
-player x class int:         
-x get 1:                   # x = 1
+player x class int         
+x get 1                   // x = 1
+player y class string         
+x get "good game!"        // x = 1
 ```
 
 #### Making operations
 
 ```plaintext
-player x class int:
-x get 3:                            # x = 3 
-player y class int:
-y get 2:                            # y = 2
+player x class int
+x get 3                            // x = 3 
+player y class int
+y get 2                            // y = 2
 
-player z class int get x buff y:    # z = x + y = 5
-z get x nerf y:                     # z = x - y = 1
-z get x amplify y:                  # z = x * y = 6
-z get x split y:                    # z = x / y = 1 
+player z class int get x buff y    // z = x + y = 5
+z get x nerf y                     // z = x - y = 1
+z get x amplify y                  // z = x * y = 6
+z get x split y                    // z = x / y = 1 
 ```

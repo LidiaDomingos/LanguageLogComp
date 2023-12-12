@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_PLAYCODE_TAB_H_INCLUDED
+# define YY_YY_PLAYCODE_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -54,74 +54,52 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    INT_VALUE = 258,               /* INT_VALUE  */
-    IDENTIFIER = 259,              /* IDENTIFIER  */
-    get = 260,                     /* get  */
-    player = 261,                  /* player  */
-    integer_token = 262,           /* integer_token  */
-    buff = 263,                    /* buff  */
-    nerf = 264,                    /* nerf  */
-    or = 265,                      /* or  */
-    routeA = 266,                  /* routeA  */
-    routeB = 267,                  /* routeB  */
-    outclassed = 268,              /* outclassed  */
-    outclass = 269,                /* outclass  */
-    tied = 270,                    /* tied  */
-    grind = 271,                   /* grind  */
-    combo = 272,                   /* combo  */
-    press = 273,                   /* press  */
-    display = 274,                 /* display  */
-    start_bracket = 275,           /* start_bracket  */
-    end_bracket = 276,             /* end_bracket  */
-    start_parentheses = 277,       /* start_parentheses  */
-    end_parentheses = 278,         /* end_parentheses  */
-    semicolon = 279,               /* semicolon  */
-    class = 280,                   /* class  */
-    split = 281,                   /* split  */
-    amplify = 282,                 /* amplify  */
-    demolish = 283,                /* demolish  */
-    team = 284,                    /* team  */
-    colon = 285                    /* colon  */
+    player = 258,                  /* player  */
+    get = 259,                     /* get  */
+    class = 260,                   /* class  */
+    buff = 261,                    /* buff  */
+    nerf = 262,                    /* nerf  */
+    amplify = 263,                 /* amplify  */
+    split = 264,                   /* split  */
+    team = 265,                    /* team  */
+    or = 266,                      /* or  */
+    combo = 267,                   /* combo  */
+    demolish = 268,                /* demolish  */
+    tied = 269,                    /* tied  */
+    outclass = 270,                /* outclass  */
+    outclassed = 271,              /* outclassed  */
+    grind = 272,                   /* grind  */
+    routeA = 273,                  /* routeA  */
+    routeB = 274,                  /* routeB  */
+    press = 275,                   /* press  */
+    display = 276,                 /* display  */
+    type = 277,                    /* type  */
+    semicolon = 278,               /* semicolon  */
+    start_parentheses = 279,       /* start_parentheses  */
+    end_parentheses = 280,         /* end_parentheses  */
+    start_bracket = 281,           /* start_bracket  */
+    end_bracket = 282,             /* end_bracket  */
+    DIGIT = 283,                   /* DIGIT  */
+    IDENTIFIER = 284,              /* IDENTIFIER  */
+    STRING = 285,                  /* STRING  */
+    enter = 286                    /* enter  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
-#define INT_VALUE 258
-#define IDENTIFIER 259
-#define get 260
-#define player 261
-#define integer_token 262
-#define buff 263
-#define nerf 264
-#define or 265
-#define routeA 266
-#define routeB 267
-#define outclassed 268
-#define outclass 269
-#define tied 270
-#define grind 271
-#define combo 272
-#define press 273
-#define display 274
-#define start_bracket 275
-#define end_bracket 276
-#define start_parentheses 277
-#define end_parentheses 278
-#define semicolon 279
-#define class 280
-#define split 281
-#define amplify 282
-#define demolish 283
-#define team 284
-#define colon 285
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 8 "playcode.y"
+
+    char* str_value;
+    int int_value;
+
+#line 100 "playcode.tab.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -133,4 +111,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_PLAYCODE_TAB_H_INCLUDED  */
