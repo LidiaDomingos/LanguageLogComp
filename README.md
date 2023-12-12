@@ -15,7 +15,7 @@ INVENTORY       =    (PLAYER, "get", BOOLEXPRESSION);
 ROUND           =    (λ | DISPLAY | CHECK | GRIND | CLASSPLAYER | INVENTORY);
 DISPLAY         =    ("display", "(", BOOLEXPRESSION, ")");
 CHECK           =    ("routeA", "(", BOOLEXPRESSION ,")", PLAY, (("routeB", PLAY) | λ ));
-GRIND           =    ("grind", INVENTORY, ";", BOOLEXPRESSION, ";", INVENTORY, PLAY);
+GRIND           =    ("while", "grinding", "(", INVENTORY, ";", BOOLEXPRESSION, ";", INVENTORY, ")", PLAY);
 CLASSPLAYER     =    ("player", PLAYER, "class", "int", (λ | {"get" , BOOLEXPRESSION}));
 BOOLEXPRESSION  =    (BOOLTERM | { "or", BOOLTERM});
 BOOLTERM        =    (RELEXPRESSION | ("combo", RELEXPRESSION));
@@ -39,7 +39,7 @@ The syntax is designed to be intuitive for gamers, allowing them to express code
 
 #### Declaring variables
 
-```plaintext
+```c
 player x class int         
 x get 1                   // x = 1
 player y class string         
@@ -48,7 +48,9 @@ x get "good game!"        // x = 1
 
 #### Making operations
 
-```plaintext
+- Simple Operations (+, -, *, /):
+
+```c
 player x class int
 x get 3                            // x = 3 
 player y class int
@@ -59,3 +61,38 @@ z get x nerf y                     // z = x - y = 1
 z get x amplify y                  // z = x * y = 6
 z get x split y                    // z = x / y = 1 
 ```
+
+- Interactions with users (output/input in cmd):
+
+```c
+player luigi class string get "luigi has lost! :c"
+display(luigi)
+
+player mario class int
+mario get press()
+display(mario)
+
+```
+
+- Conditions (if/else):
+```c
+player mario class int get 2
+player luigi class int get 3
+
+routeA (luigi outclass mario){
+    mario get 5
+} routeB {
+    display("luigi was outclassed by mario")
+}
+```
+
+- Simple Loop (goes 1 to 10):
+```c
+player mario class int
+
+while grinding(mario get 1; mario outclassed 11; mario get mario buff 1){
+    display(mario)
+} 
+```
+
+

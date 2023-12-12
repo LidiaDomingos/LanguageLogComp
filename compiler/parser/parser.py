@@ -64,8 +64,6 @@ class Parser():
             expression = Parser().parseBoolExpression()
             statement = Assign(identifier, expression)
             
-            if (Parser().tokenizer.next.type == "END_PARENTHESES"):
-                raise SyntaxError("It needs a start parentheses before!")
         else:
             raise SyntaxError("Check if everything is correct!")
        
@@ -140,25 +138,36 @@ class Parser():
             
         elif (Parser().tokenizer.next.type == "FOR"):
             Parser().tokenizer.selectNext()
-            init = Parser().parseInventory()
-            if (Parser().tokenizer.next.type == "SEMICOLON"):
+            if (Parser().tokenizer.next.type == "GRIND"):
                 Parser().tokenizer.selectNext()
-                condition = Parser().parseBoolExpression()
-                if (Parser().tokenizer.next.type == "SEMICOLON"):
+                if (Parser().tokenizer.next.type == "START_PARENTHESES"):
                     Parser().tokenizer.selectNext()
-                    increment = Parser().parseInventory()
-                    block = Parser().parsePlay()
-
-                    node = For("FOR", [init, condition, increment, block])
-                    return node
-
+                    init = Parser().parseInventory()
+                    if (Parser().tokenizer.next.type == "SEMICOLON"):
+                        Parser().tokenizer.selectNext()
+                        condition = Parser().parseBoolExpression()
+                        if (Parser().tokenizer.next.type == "SEMICOLON"):
+                            Parser().tokenizer.selectNext()
+                            increment = Parser().parseInventory()
+                            if (Parser().tokenizer.next.type == "END_PARENTHESES"):
+                                Parser().tokenizer.selectNext()
+                                block = Parser().parsePlay()
+                                node = For("FOR", [init, condition, increment, block])
+                                return node
+                            else:
+                                raise SyntaxError("The syntax to for is (example): while grinding (a get 0; a outclassed n; a get a buff 1)")
+                        else:
+                            raise SyntaxError("The syntax to for is (example): while grinding (a get 0; a outclassed n; a get a buff 1)")
+                    else:
+                        raise SyntaxError("The syntax to for is (example): while grinding (a get 0; a outclassed n; a get a buff 1)")
                 else:
-                    raise SyntaxError("The syntax to for is (exmaple): int a get 0; a outclassed n; a get a buff 1")
+                    raise SyntaxError("The syntax to for is (example): while grinding (a get 0; a outclassed n; a get a buff 1)")
             else:
-                raise SyntaxError("The syntax to for is (exmaple): int a get 0; a outclassed n; a get a buff 1")
+                raise SyntaxError("The syntax to for is (example): while grinding (a get 0; a outclassed n; a get a buff 1)")
 
         elif (Parser().tokenizer.next.type == "ASSIGN"):
             raise SyntaxError("To a player get atributes, must have an name before!")
+        
 
 
     @staticmethod

@@ -1,0 +1,3 @@
+player mario class int
+mario get press()
+display(mario)

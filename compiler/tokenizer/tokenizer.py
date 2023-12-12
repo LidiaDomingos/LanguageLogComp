@@ -114,9 +114,9 @@ class Tokenizer:
                 self.token_type = "ELSE"
                 self.next = Token(type=self.token_type, value="else")
 
-            elif (identifier == "grind"):
-                self.token_type = "FOR"
-                self.next = Token(type=self.token_type, value="for")
+            elif (identifier == "grinding"):
+                self.token_type = "GRIND"
+                self.next = Token(type=self.token_type, value="grinding")
             
             elif (identifier == "player"):
                 self.token_type = "VAR"
@@ -165,6 +165,10 @@ class Tokenizer:
             elif (identifier == "or"):
                 self.token_type = "OR"
                 self.next = Token(type=self.token_type, value="||")
+
+            elif (identifier == "while"):
+                self.token_type = "FOR"
+                self.next = Token(type=self.token_type, value="for")
 
             elif (identifier == "combo"):
                 self.token_type = "AND"
